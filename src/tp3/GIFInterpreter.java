@@ -15,8 +15,8 @@ public class GIFInterpreter {
 
 
         try {
-            fileInputStream = new FileInputStream("test2.gif");
-            fileOutputStream = new FileOutputStream("result2.gif");
+            fileInputStream = new FileInputStream("test.gif");
+            fileOutputStream = new FileOutputStream("result.gif");
             int read = fileInputStream.read();
             int i = 0;
             while (read != -1) {
@@ -35,13 +35,23 @@ public class GIFInterpreter {
 
                     //NEGATIVO
 
-                    fileOutputStream.write(255 - read);
+                    /*fileOutputStream.write(255 - read);
                     int read1 = fileInputStream.read();
                     i++;
                     fileOutputStream.write(255 - read1);
                     int read2 = fileInputStream.read();
                     i++;
-                    fileOutputStream.write(255 - read2);
+                    fileOutputStream.write(255 - read2);*/
+
+                    //FLASHERO - BGR grabado como RGB
+
+                    int read1 = fileInputStream.read();
+                    i++;
+                    int read2 = fileInputStream.read();
+                    i++;
+                    fileOutputStream.write(read2);
+                    fileOutputStream.write(read1);
+                    fileOutputStream.write(read);
 
                 } else {
                     fileOutputStream.write(read);
